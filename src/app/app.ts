@@ -8,17 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  title = 'vip2'; // property -> {{ title }}
-  name = 'Nguyễn Mạnh Tuấn';
-  age = 20;
 
-  // method -> event binding (click)
-  sayHello() {
-    alert('mèo méo meo');
-    console.log('mèo méo meo');
-  }
-
-  delete() {
-    console.log('tạch');
-  }
 }
