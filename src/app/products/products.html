@@ -1,0 +1,11 @@
+<div class="max-w-4xl mx-auto mt-10 px-4">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Danh sách sản phẩm</h2>
+  
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let item of products" class="p-4 hover:bg-gray-50 text-lg text-gray-700 font-medium">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</div>
