@@ -1,29 +1,33 @@
+import { AddStory } from './pages/add-story/add-story';
 import { Routes } from '@angular/router';
-import { About } from './pages/about/about';
 import { Home } from './home/home';
-import { Contact } from './pages/contact/contact';
-import { Register } from './register/register';
-import { Products } from './products/products';
+import { About } from './pages/about/about';
+import { Stories } from './pages/stories/stories';
+// import {AddStory} from './pages/add-story'
 
 export const routes: Routes = [
-    {
-        path: 'about',
-        component: About,
-    },
-    {
-        path: 'home',
-        component: Home,
-    },
-    {
-        path: 'contact',
-        component: Contact,
-    },
-    {
-        path: 'register',
-        component: Register,
-    },
-    {
-        path: 'product',
-        component: Products,
-    }
+  {
+    path: '',
+    component: Home,
+  },
+  {
+    path: 'home',
+    component: Home,
+  },
+  {
+    path: 'about',
+    component: About,
+  },
+  {
+    path: 'contact',
+    component: About,
+  },
+  {
+    path: 'stories',
+    component: Stories,
+  },
+  {
+    path: 'add-story',
+    component: AddStory,
+  }
 ];

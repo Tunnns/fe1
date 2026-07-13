@@ -1,0 +1,10 @@
+<p>stories works!</p>
+<!-- @for -->
+@for (item of stories; track item.title) {
+  <p>{{ item.title }}</p>
+  @if (item.views > 8000) {
+    <span>Hot</span>
+  }
+}
+
+<!-- @if -->

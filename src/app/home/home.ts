@@ -7,17 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './home.css',
 })
 export class Home {
-  title = 'vip2'; // property -> {{ title }}
-  name = 'Nguyễn Mạnh Tuấn';
-  age = 20;
+  // code logic
+  // property
+  name = 'Home';
 
-  // method -> event binding (click)
-  sayHello() {
-    alert('mèo méo meo');
-    console.log('mèo méo meo');
-  }
+  constructor() {}
 
-  delete() {
-    console.log('tạch');
-  }
+  // method
+  deleteProduct() {}
 }
