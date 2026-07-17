@@ -1,39 +1,55 @@
-import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
-import { Title } from '@angular/platform-browser';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-add-story',
+  selector: "app-add-story",
   imports: [ReactiveFormsModule],
-  templateUrl: './add-story.html',
-  styleUrl: './add-story.css',
+  templateUrl: "./add-story.html",
+  styleUrl: "./add-story.css",
 })
 export class AddStory {
   addForm: FormGroup;
 
-  get title(){
-    return this.addForm.get('title')
-  }
-    get author(){
-    return this.addForm.get('title')
-  }
-    get views(){
-    return this.addForm.get('title')
-  }
+  success = "";
+  error = "";
+  isLoading = false;
 
-  constructor(private fb: FormBuilder){
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.addForm = this.fb.group({
       title: ["", [Validators.required, Validators.minLength(3)]],
-      author: "",
-      views: ["", [Validators.min(0)]]
-    })
+      author: [""],
+      views: [""]
+    });
+  }
+
+  get title() {
+    return this.addForm.get("title");
   }
 
   submitForm() {
-    if (this.addForm.valid) {
-      console.log(this.addForm.value);
-    } else {
-      this.addForm.markAllAsTouched();
+    if (this.addForm.invalid) {
+      return;
     }
+
+    this.error = "";
+    this.success = "";
+    this.isLoading = true;
+
+    const data = this.addForm.value;
+
+    this.http.post("http://localhost:3000/stories", data).subscribe({
+      next: () => {
+        this.success = "Thêm truyện thành công";
+        this.addForm.reset();
+        this.isLoading = false;
+      },
+      error: () => {
+        this.error = "Có lỗi xảy ra";
+      },
+    });
   }
 }
