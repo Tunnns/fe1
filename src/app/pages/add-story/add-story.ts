@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { StoryService } from "./story";
 
 @Component({
   selector: "app-add-story",
@@ -17,7 +17,7 @@ export class AddStory {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
+    private storyService: StoryService
   ) {
     this.addForm = this.fb.group({
       title: ["", [Validators.required, Validators.minLength(3)]],
@@ -41,7 +41,7 @@ export class AddStory {
 
     const data = this.addForm.value;
 
-    this.http.post("http://localhost:3000/stories", data).subscribe({
+    this.storyService.createStory(data).subscribe({
       next: () => {
         this.success = "Thêm truyện thành công";
         this.addForm.reset();
@@ -49,6 +49,7 @@ export class AddStory {
       },
       error: () => {
         this.error = "Có lỗi xảy ra";
+        this.isLoading = false;
       },
     });
   }
